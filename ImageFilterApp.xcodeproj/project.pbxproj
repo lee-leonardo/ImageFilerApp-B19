@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3824A6F319907C24008771EC /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3824A6F219907C24008771EC /* AssetsLibrary.framework */; };
 		38BEB74D1990249B0063384C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BEB74C1990249B0063384C /* AppDelegate.swift */; };
 		38BEB74F1990249B0063384C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BEB74E1990249B0063384C /* ViewController.swift */; };
 		38BEB7521990249B0063384C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38BEB7501990249B0063384C /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3824A6F219907C24008771EC /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		38BEB7471990249B0063384C /* ImageFilterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFilterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BEB74B1990249B0063384C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38BEB74C1990249B0063384C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3824A6F319907C24008771EC /* AssetsLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +60,7 @@
 		38BEB73E1990249B0063384C = {
 			isa = PBXGroup;
 			children = (
+				3824A6F219907C24008771EC /* AssetsLibrary.framework */,
 				38BEB7491990249B0063384C /* ImageFilterApp */,
 				38BEB75C1990249B0063384C /* ImageFilterAppTests */,
 				38BEB7481990249B0063384C /* Products */,
@@ -421,6 +425,7 @@
 				38BEB7651990249B0063384C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		38BEB7661990249B0063384C /* Build configuration list for PBXNativeTarget "ImageFilterAppTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +434,7 @@
 				38BEB7681990249B0063384C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

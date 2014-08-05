@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AssetsLibrary
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
                             
@@ -17,6 +18,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		if NSUserDefaults.standardUserDefaults().boolForKey("notFirstTime") {
+			
+		} else {
+			NSUserDefaults.standardUserDefaults().setBool(true, forKey: "notFirstTime")
+			NSOperationQueue.mainQueue().addOperationWithBlock({
+				() -> Void in
+				self.firstTime()
+				})
+		}
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -48,6 +59,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		self.cameraPicker.allowsEditing = true
 		self.cameraPicker.delegate = self
 		
+	}
+	
+	func firstTime() {
+		var assetsLibrary = ALAssetsLibrary()
+		if ALAssetsLibrary.authorizationStatus() != ALAuthorizationStatus.Authorized {
+			var requireAuthorization = UIAlertController(title: "App Requires Authorization", message: "This application requires permissions to your Photo Library and Camera to function properly.", preferredStyle: UIAlertControllerStyle.Alert)
+			let okayButton = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil)
+			requireAuthorization.addAction(okayButton)
+			self.presentViewController(requireAuthorization, animated: true, completion: nil)
+			
+			//If I wanted to ask for permissions, this would probably be the best place to do it. I do not want to ask them for all permissions however... That can be done with:
+			//assetsLibrary.enumerateGroupsWithTypes(types: ALAssetsGroupType, usingBlock: ALAssetsLibraryGroupsEnumerationResultsBlock?, failureBlock: ALAssetsLibraryAccessFailureBlock?)
+		}
 	}
 
 	
