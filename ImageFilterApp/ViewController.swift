@@ -12,8 +12,9 @@ import AssetsLibrary
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
                             
 	@IBOutlet weak var imageView: UIImageView!
+	@IBOutlet weak var actionButton: UIBarButtonItem!
 	var cameraPicker = UIImagePickerController()
-	var photoPicker = UIImagePickerController()
+	//var photoPicker = UIImagePickerController()
 	var imageActionSheet = UIAlertController()
 	
 //MARK: IBAction
@@ -47,9 +48,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
 //MARK: Setup methods
 	func setupPickers() {
-		self.photoPicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-		self.photoPicker.allowsEditing = true
-		self.photoPicker.delegate = self
+		//self.photoPicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+		//self.photoPicker.allowsEditing = true
+		//self.photoPicker.delegate = self
 		
 		if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
 			self.cameraPicker.sourceType = UIImagePickerControllerSourceType.Camera
@@ -78,6 +79,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 //MARK: ActionSheet
 	func setupActionController() {
 		imageActionSheet = UIAlertController(title: "Pick Source", message: "This will allow one to pick a source for the Image", preferredStyle: UIAlertControllerStyle.ActionSheet)
+		//self.imageActionSheet.popoverPresentationController.sourceView = self.actionButton
+		//Tool bar is the problem?	
 		
 		let cameraButton = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default, handler: {
 			(action : UIAlertAction!) -> Void in
@@ -95,8 +98,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 			})
 		let photoLibrary = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default, handler: {
 			(action: UIAlertAction!) -> Void in
-			self.presentViewController(self.photoPicker, animated: true, completion: nil)
+			//self.presentViewController(self.photoPicker, animated: true, completion: nil)
 			
+			self.performSegueWithIdentifier("ShowPhotoLibrary", sender: self)
+						
 			})
 		
 		let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)

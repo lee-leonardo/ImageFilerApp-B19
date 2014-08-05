@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3824A6F319907C24008771EC /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3824A6F219907C24008771EC /* AssetsLibrary.framework */; };
+		3826A9F719917DDE001E54B1 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3826A9F619917DDE001E54B1 /* PhotoViewController.swift */; };
 		38BEB74D1990249B0063384C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BEB74C1990249B0063384C /* AppDelegate.swift */; };
 		38BEB74F1990249B0063384C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BEB74E1990249B0063384C /* ViewController.swift */; };
 		38BEB7521990249B0063384C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38BEB7501990249B0063384C /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		3824A6F219907C24008771EC /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		3826A9F619917DDE001E54B1 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		38BEB7471990249B0063384C /* ImageFilterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFilterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BEB74B1990249B0063384C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38BEB74C1990249B0063384C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				38BEB74E1990249B0063384C /* ViewController.swift */,
+				3826A9F619917DDE001E54B1 /* PhotoViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			files = (
 				38BEB74F1990249B0063384C /* ViewController.swift in Sources */,
 				38BEB74D1990249B0063384C /* AppDelegate.swift in Sources */,
+				3826A9F719917DDE001E54B1 /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
