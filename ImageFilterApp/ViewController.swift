@@ -10,13 +10,18 @@ import UIKit
 import AssetsLibrary
 import Photos
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ConfirmPhotoDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, PHPhotoLibraryChangeObserver, ConfirmPhotoDelegate {
                             
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var actionButton: UIBarButtonItem!
 	var cameraPicker = UIImagePickerController()
 	//var photoPicker = UIImagePickerController()
 	var imageActionSheet = UIAlertController()
+	
+	var imageAsset : PHAsset!
+	let adjustmentFormatterIdentifier = "com.filterappdemo.cf"
+	let adjustmentFormatVersion = "1.0"
+	var context = CIContext(options: nil)
 	
 //MARK: IBAction Buttons
 	@IBAction func actionSheet(sender: AnyObject) {
@@ -25,6 +30,64 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	}
 	
 	@IBAction func imageEffectsActionSheet(sender: AnyObject) {
+		//println("RootVC: Image Effects Action Sheet Fired!")
+		
+		if self.imageAsset != nil {
+			var options = PHContentEditingInputRequestOptions()
+			options.canHandleAdjustmentData = {
+				(data: PHAdjustmentData!) -> Bool in
+				
+				return data.formatIdentifier == self.adjustmentFormatterIdentifier && data.formatVersion == self.adjustmentFormatVersion
+			}
+			
+			self.imageAsset!.requestContentEditingInputWithOptions(options, completionHandler: { (contentEditingInput: PHContentEditingInput!, info: [NSObject : AnyObject]!) -> Void in
+				//This part 'decomposes' parts of the code by grabbing the url and orientation. From this it pulls a copy of the image and applies the correct orientation (so that our modifications affect the image in the correct way).
+				var url = contentEditingInput.fullSizeImageURL
+				var orientation = contentEditingInput.fullSizeImageOrientation
+				var inputImage = CIImage(contentsOfURL: url)
+				inputImage.imageByApplyingOrientation(orientation)
+				
+				//Init filter, the filter has a CI name. The filter needs to be set to a default before setting specific values. After that sent the inputImage into the filter, the forKey tells the filterto modify the foreground image of the CIImage? After than the output is referenced.
+				var filterTest = "CISepiaTone"
+				var filter = CIFilter(name: filterTest)
+				filter.setDefaults()
+				filter.setValue(inputImage, forKey: kCIInputImageKey)
+				var outputImage = filter.outputImage
+				
+				//This takes the outputImage and generates a CGImage from the CIImage using the context of the VC. This outputImage's coordinates are translated with it with outputImage.extent(?). The CGImage then is converted into a UIImage object, which then is tranlated into jpeg data with a resolution.
+				var cgImage = self.context.createCGImage(outputImage, fromRect: outputImage.extent())
+				var finishedImage = UIImage(CGImage: cgImage)
+				var jpegData = UIImageJPEGRepresentation(finishedImage, 1.0)
+				
+				//Adjustment data (data from after being modified).
+				//This means that the changes we created is going to be saved as adjustmentData that will become metadata for the PHAsset.
+				var adjustmentData = PHAdjustmentData(formatIdentifier: self.adjustmentFormatterIdentifier, formatVersion: self.adjustmentFormatVersion, data: jpegData)
+				
+				//Gets the contentEditingInput from the completion handler.
+				var contentEditingOutput = PHContentEditingOutput(contentEditingInput: contentEditingInput)
+				jpegData.writeToURL(contentEditingOutput.renderedContentURL, atomically: true)
+				contentEditingOutput.adjustmentData = adjustmentData
+				
+				PHPhotoLibrary.sharedPhotoLibrary().performChanges({
+					var request = PHAssetChangeRequest(forAsset: self.imageAsset)
+					request.contentEditingOutput = contentEditingOutput
+					
+					}, completionHandler: { (success: Bool, error: NSError!) -> Void in
+						if !success {
+							println("ImageFilterApp Error in PHPhotoLibrary.sharedPhotoLibrary().performChanges:\n\(error)")
+						}
+						
+				})
+				
+				
+			})
+		} else {
+			var alert = UIAlertController(title: "Nothing to Edit!", message: "This app is designed to edit images. Therefore this application cannot edit when you have not selected anything!", preferredStyle: UIAlertControllerStyle.Alert)
+			let okay = UIAlertAction(title: "Sorry...", style: UIAlertActionStyle.Cancel, handler: nil)
+			alert.addAction(okay)
+			presentViewController(alert, animated: true, completion: nil)
+		}
+
 		
 	}
 	
@@ -32,6 +95,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 //MARK: Viewcontroller
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		PHPhotoLibrary.sharedPhotoLibrary().registerChangeObserver(self) //With this you need to conform to PHPhotoLibraryChangeObserver
 		
 		if NSUserDefaults.standardUserDefaults().boolForKey("notFirstTime") {
 			
@@ -79,6 +143,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 			
 			//If I wanted to ask for permissions, this would probably be the best place to do it. I do not want to ask them for all permissions however... That can be done with:
 			//assetsLibrary.enumerateGroupsWithTypes(types: ALAssetsGroupType, usingBlock: ALAssetsLibraryGroupsEnumerationResultsBlock?, failureBlock: ALAssetsLibraryAccessFailureBlock?)
+		}
+	}
+	
+	func updateImageView() {
+		var targetSize = CGSize(width: CGRectGetWidth(self.imageView.frame), height: CGRectGetHeight(self.imageView.frame))
+
+		PHImageManager.defaultManager().requestImageForAsset(imageAsset, targetSize: targetSize, contentMode: PHImageContentMode.AspectFill, options: nil) {
+			(image: UIImage!, [NSObject : AnyObject]!) -> Void in
+			self.imageView.image = image
+			
 		}
 	}
 	
@@ -167,14 +241,28 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		
 	}
 	
+//MARK: PHPhotoLibraryChangeObserver
+	func photoLibraryDidChange(changeInstance: PHChange!) {
+		NSOperationQueue.mainQueue().addOperationWithBlock {
+			() -> Void in
+			if self.imageAsset != nil {
+				var changeDetails = changeInstance.changeDetailsForObject(self.imageAsset)
+				if changeDetails != nil {
+					self.imageAsset = changeDetails.objectAfterChanges as? PHAsset
+					if changeDetails.assetContentChanged {
+						self.photoConfirmed(self.imageAsset)
+					}
+				}
+			}
+		}
+	}
+	
 //MARK: ConfirmPhotoDelegate
 	func photoConfirmed(asset: PHAsset) {
-		var targetSize = CGSize(width: CGRectGetWidth(self.imageView.frame), height: CGRectGetHeight(self.imageView.frame))
+		self.imageAsset = asset
 		
-		PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: targetSize, contentMode: PHImageContentMode.AspectFill, options: nil) {
-			(image: UIImage!, [NSObject : AnyObject]!) -> Void in
-			self.imageView.image = image
-		}
+		updateImageView()
+		
 	}
 
 
