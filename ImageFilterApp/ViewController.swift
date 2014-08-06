@@ -8,8 +8,9 @@
 
 import UIKit
 import AssetsLibrary
+import Photos
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ConfirmPhotoDelegate {
                             
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var actionButton: UIBarButtonItem!
@@ -111,11 +112,30 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		imageActionSheet.addAction(cancel)
 	}
 	
+//MARK: Segue
+	override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+		if segue.identifier == "ShowPhotoLibrary" {
+			var destination = segue.destinationViewController as PhotoViewController
+			destination.fetchResultAssets = PHAsset.fetchAssetsWithOptions(nil)
+			destination.delegate = self
+		}
+	}
+	
 //MARK: UIImagePickerController
 	func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
 		var imageReturn = info[UIImagePickerControllerEditedImage] as UIImage
 		self.imageView.image = imageReturn
 		self.dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+//MARK: ConfirmPhotoDelegate
+	func photoConfirmed(asset: PHAsset) {
+		var targetSize = CGSize(width: CGRectGetWidth(self.imageView.frame), height: CGRectGetHeight(self.imageView.frame))
+		
+		PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: targetSize, contentMode: PHImageContentMode.AspectFill, options: nil) {
+			(image: UIImage!, [NSObject : AnyObject]!) -> Void in
+			self.imageView.image = image
+		}
 	}
 
 

@@ -57,7 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="967" y="136"/>
+            <point key="canvasLocation" x="951" y="136"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="Isg-RG-jjy">
@@ -74,20 +74,35 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="p2p-Ec-rMf">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2U6-SR-iAe">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="65" height="65"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoLibraryCell" id="vtg-n7-rqS">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoLibraryCell" id="vtg-n7-rqS" customClass="PhotoCell" customModule="ImageFilterApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eCq-7v-TPI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="eCq-7v-TPI" firstAttribute="top" secondItem="vtg-n7-rqS" secondAttribute="top" id="AlX-ae-8Qu"/>
+                                            <constraint firstAttribute="trailing" secondItem="eCq-7v-TPI" secondAttribute="trailing" id="BVp-tQ-7b9"/>
+                                            <constraint firstItem="eCq-7v-TPI" firstAttribute="leading" secondItem="vtg-n7-rqS" secondAttribute="leading" id="bL6-FD-s3V"/>
+                                            <constraint firstAttribute="bottom" secondItem="eCq-7v-TPI" secondAttribute="bottom" id="clp-6t-hLP"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="photoImageView" destination="eCq-7v-TPI" id="Twc-35-3bN"/>
+                                            <segue destination="c5u-uw-q4J" kind="show" identifier="PickPhoto" id="hkY-jV-QVY"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -110,6 +125,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJs-92-hnZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1659" y="136"/>
+        </scene>
+        <!--Confirm Photo Controller-->
+        <scene sceneID="5kQ-vf-0Qk">
+            <objects>
+                <viewController id="c5u-uw-q4J" customClass="ConfirmPhotoController" customModule="ImageFilterApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="llI-yW-8uU"/>
+                        <viewControllerLayoutGuide type="bottom" id="cex-vb-d6G"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="55g-ae-bp7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byb-AF-ru7">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="t2n-ek-nhJ"/>
+                                    <barButtonItem systemItem="done" id="HU3-CP-FzU">
+                                        <connections>
+                                            <action selector="confirmAction:" destination="c5u-uw-q4J" id="XHg-I0-5mp"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="HNH-ZN-Ume"/>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Nu-SC-isg">
+                                <rect key="frame" x="8" y="72" width="584" height="452"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="3Nu-SC-isg" secondAttribute="centerX" id="M2X-FA-fJH"/>
+                            <constraint firstAttribute="centerX" secondItem="3Nu-SC-isg" secondAttribute="centerX" id="RjH-9W-Emc"/>
+                            <constraint firstAttribute="trailing" secondItem="3Nu-SC-isg" secondAttribute="trailing" constant="8" id="Yf4-4A-t7C"/>
+                            <constraint firstAttribute="trailing" secondItem="byb-AF-ru7" secondAttribute="trailing" id="fJ0-ff-LFd"/>
+                            <constraint firstItem="cex-vb-d6G" firstAttribute="top" secondItem="byb-AF-ru7" secondAttribute="bottom" id="lVb-ia-X71"/>
+                            <constraint firstAttribute="centerX" secondItem="byb-AF-ru7" secondAttribute="centerX" id="n05-26-CNt"/>
+                            <constraint firstItem="byb-AF-ru7" firstAttribute="top" secondItem="3Nu-SC-isg" secondAttribute="bottom" constant="32" id="tKm-gY-FEM"/>
+                            <constraint firstItem="3Nu-SC-isg" firstAttribute="leading" secondItem="55g-ae-bp7" secondAttribute="leading" constant="8" id="txk-AB-YCb"/>
+                            <constraint firstItem="3Nu-SC-isg" firstAttribute="top" secondItem="llI-yW-8uU" secondAttribute="bottom" constant="8" id="xhf-7e-gJe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="confirmImageView" destination="3Nu-SC-isg" id="mGe-1b-zWR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="De8-Du-AEc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2359" y="136"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="o53-XQ-jul">
