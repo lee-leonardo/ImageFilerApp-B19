@@ -62,7 +62,7 @@ class PhotoViewController: UIViewController, UICollectionViewDataSource, Confirm
 		cell.tag = incrementTag
 		
 		var asset = self.fetchResultAssets[indexPath.item] as PHAsset
-		self.photoManager.requestImageForAsset(asset, targetSize: assetPhotoSize, contentMode: PHImageContentMode.AspectFill, options: nil) {
+		self.photoManager.requestImageForAsset(asset, targetSize: assetPhotoSize, contentMode: PHImageContentMode.AspectFit, options: nil) {
 			(result : UIImage!, [NSObject : AnyObject]!) -> Void in
 			
 			if cell.tag == incrementTag {

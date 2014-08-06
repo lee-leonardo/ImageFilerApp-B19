@@ -18,11 +18,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	//var photoPicker = UIImagePickerController()
 	var imageActionSheet = UIAlertController()
 	
-//MARK: IBAction
+//MARK: IBAction Buttons
 	@IBAction func actionSheet(sender: AnyObject) {
 		self.presentViewController(imageActionSheet, animated: true, completion: nil)
 		
 	}
+	
+	@IBAction func imageEffectsActionSheet(sender: AnyObject) {
+		
+	}
+	
 
 //MARK: Viewcontroller
 	override func viewDidLoad() {
@@ -101,7 +106,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 			(action: UIAlertAction!) -> Void in
 			//self.presentViewController(self.photoPicker, animated: true, completion: nil)
 			
-			self.performSegueWithIdentifier("ShowPhotoLibrary", sender: self)
+			self.checkAuthentication({ (status) -> Void in
+				if status == PHAuthorizationStatus.Authorized {
+					NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+						self.performSegueWithIdentifier("ShowPhotoLibrary", sender: self)
+					})
+				}
+			})
+			
+			
+			//self.performSegueWithIdentifier("ShowPhotoLibrary", sender: self)
 						
 			})
 		
@@ -118,14 +132,39 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 			var destination = segue.destinationViewController as PhotoViewController
 			destination.fetchResultAssets = PHAsset.fetchAssetsWithOptions(nil)
 			destination.delegate = self
+
+			//self.checkAuthentication({ (status) -> Void inif status == PHAuthorizationStatus.Authorized {}})
 		}
 	}
+//General segue.
+//	override func performSegueWithIdentifier(identifier: String!, sender: AnyObject!) {
+//		if identifier == "ShowPhotoLibrary" {
+//			
+//		}
+//	}
 	
 //MARK: UIImagePickerController
 	func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
 		var imageReturn = info[UIImagePickerControllerEditedImage] as UIImage
 		self.imageView.image = imageReturn
 		self.dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+//MARK: PHPhotoLibrary
+	func checkAuthentication(completionHandler: (PHAuthorizationStatus) -> Void ) -> Void {
+		
+		switch PHPhotoLibrary.authorizationStatus() {
+		case .NotDetermined:
+			println("Not determined")
+			PHPhotoLibrary.requestAuthorization({
+				(status : PHAuthorizationStatus) -> Void in
+				completionHandler(status)
+			})
+		default:
+			println("Denied, Restricted or Authorized")
+			completionHandler(PHPhotoLibrary.authorizationStatus())
+		}
+		
 	}
 	
 //MARK: ConfirmPhotoDelegate
