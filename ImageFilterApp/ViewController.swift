@@ -25,8 +25,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	
 //MARK: IBAction Buttons
 	@IBAction func actionSheet(sender: AnyObject) {
+		//Checks to see if device is a iPad, else will go with the method
+		if self.imageActionSheet.popoverPresentationController != nil {
+			self.imageActionSheet.popoverPresentationController.barButtonItem = sender as UIBarButtonItem
+		}
 		self.presentViewController(imageActionSheet, animated: true, completion: nil)
-		
+
 	}
 	
 	@IBAction func imageEffectsActionSheet(sender: AnyObject) {
@@ -57,7 +61,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 				//This takes the outputImage and generates a CGImage from the CIImage using the context of the VC. This outputImage's coordinates are translated with it with outputImage.extent(?). The CGImage then is converted into a UIImage object, which then is tranlated into jpeg data with a resolution.
 				var cgImage = self.context.createCGImage(outputImage, fromRect: outputImage.extent())
 				var finishedImage = UIImage(CGImage: cgImage)
-				var jpegData = UIImageJPEGRepresentation(finishedImage, 1.0)
+//				let finishedImage = UIImage(CIImage: outputImage)
+				var jpegData = UIImageJPEGRepresentation(finishedImage, 0.5) //Resolution is intensive memory-wise.
 				
 				//Adjustment data (data from after being modified).
 				//This means that the changes we created is going to be saved as adjustmentData that will become metadata for the PHAsset.
@@ -97,7 +102,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		super.viewDidLoad()
 		PHPhotoLibrary.sharedPhotoLibrary().registerChangeObserver(self) //With this you need to conform to PHPhotoLibraryChangeObserver
 		
-		if NSUserDefaults.standardUserDefaults().boolForKey("notFirstTime") {
+		if NSUserDefaults.standardUserDefaults().boolForKey("notFirstTime") == true {
 			
 		} else {
 			NSUserDefaults.standardUserDefaults().setBool(true, forKey: "notFirstTime")

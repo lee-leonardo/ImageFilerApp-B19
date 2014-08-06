@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="L4S-fK-2i6"/>
-                                    <barButtonItem systemItem="action" id="6Cc-JX-CD3">
+                                    <barButtonItem style="plain" systemItem="action" id="6Cc-JX-CD3">
                                         <connections>
                                             <action selector="actionSheet:" destination="BYZ-38-t0r" id="X7k-t8-vVe"/>
                                         </connections>
