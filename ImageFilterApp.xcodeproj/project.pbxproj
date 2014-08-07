@@ -16,6 +16,7 @@
 		38BEB7541990249B0063384C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38BEB7531990249B0063384C /* Images.xcassets */; };
 		38BEB7601990249B0063384C /* ImageFilterAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BEB75F1990249B0063384C /* ImageFilterAppTests.swift */; };
 		38D295721991979C001EB347 /* ConfirmPhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D295711991979C001EB347 /* ConfirmPhotoController.swift */; };
+		38E55DE6199321D700817BEF /* SimpleCI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E55DE5199321D700817BEF /* SimpleCI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		38BEB75E1990249B0063384C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38BEB75F1990249B0063384C /* ImageFilterAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFilterAppTests.swift; sourceTree = "<group>"; };
 		38D295711991979C001EB347 /* ConfirmPhotoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPhotoController.swift; sourceTree = "<group>"; };
+		38E55DE5199321D700817BEF /* SimpleCI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				38BEB74E1990249B0063384C /* ViewController.swift */,
 				3826A9F619917DDE001E54B1 /* PhotoViewController.swift */,
 				38D295711991979C001EB347 /* ConfirmPhotoController.swift */,
+				38E55DE5199321D700817BEF /* SimpleCI.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				38D295721991979C001EB347 /* ConfirmPhotoController.swift in Sources */,
 				38BEB74D1990249B0063384C /* AppDelegate.swift in Sources */,
 				3826A9F719917DDE001E54B1 /* PhotoViewController.swift in Sources */,
+				38E55DE6199321D700817BEF /* SimpleCI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
