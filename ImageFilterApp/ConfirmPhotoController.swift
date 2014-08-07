@@ -13,9 +13,11 @@ protocol ConfirmPhotoDelegate {
 	func photoConfirmed(asset: PHAsset) -> Void
 }
 
-class ConfirmPhotoController: UIViewController {
+class ConfirmPhotoController: UIViewController, UICollectionViewDataSource {
 
 	@IBOutlet weak var confirmImageView: UIImageView!
+	@IBOutlet weak var filterCollectionView: UICollectionView!
+	
 	var asset : PHAsset!
 	var delegate : ConfirmPhotoDelegate?
 	
@@ -25,6 +27,8 @@ class ConfirmPhotoController: UIViewController {
     }
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+		filterCollectionView.backgroundColor = UIColor.whiteColor()
+		
 		var targetSize = CGSize(width: CGRectGetWidth(self.confirmImageView.frame), height: CGRectGetHeight(self.confirmImageView.frame))
 		PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: targetSize, contentMode: PHImageContentMode.AspectFill, options: nil)  {
 			(image: UIImage!, [NSObject : AnyObject]!) -> Void in
@@ -39,6 +43,27 @@ class ConfirmPhotoController: UIViewController {
 	@IBAction func confirmAction(sender: AnyObject) {
 		self.delegate!.photoConfirmed(self.asset)
 		self.navigationController.popToRootViewControllerAnimated(true)
+		
+	}
+	
+//MARK: UICollectionViewDatasource
+	func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int {
+		return 4
+	}
+	func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell! {
+		var cell = collectionView.dequeueReusableCellWithReuseIdentifier("SelectFilterCell", forIndexPath: indexPath) as EffectCell
+		
+		PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: cell.filteredImageSize, contentMode: PHImageContentMode.AspectFill, options: nil) {
+			(previewImage: UIImage!, object: [NSObject : AnyObject]!) -> Void in
+			
+			NSOperationQueue.mainQueue().addOperationWithBlock({
+				() -> Void in
+				cell.filteredImage.image = previewImage
+			})
+		}
+		
+	
+		return cell
 		
 	}
 }

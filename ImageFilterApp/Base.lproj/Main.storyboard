@@ -158,12 +158,6 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="HNH-ZN-Ume"/>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Nu-SC-isg">
-                                <rect key="frame" x="8" y="72" width="584" height="396"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="396" id="yrn-yJ-sfJ"/>
-                                </constraints>
-                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NsR-iJ-TTo">
                                 <rect key="frame" x="0.0" y="476" width="600" height="80"/>
                                 <constraints>
@@ -176,21 +170,41 @@
                                     <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="OWZ-lD-5Bx">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SelectFilterCell" id="OWZ-lD-5Bx" customClass="EffectCell" customModule="ImageFilterApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iXo-9d-dfa">
+                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="iXo-9d-dfa" firstAttribute="top" secondItem="OWZ-lD-5Bx" secondAttribute="top" id="GmQ-nu-dtf"/>
+                                            <constraint firstAttribute="bottom" secondItem="iXo-9d-dfa" secondAttribute="bottom" id="X6m-QP-ebh"/>
+                                            <constraint firstItem="iXo-9d-dfa" firstAttribute="leading" secondItem="OWZ-lD-5Bx" secondAttribute="leading" id="kgs-RS-94v"/>
+                                            <constraint firstAttribute="trailing" secondItem="iXo-9d-dfa" secondAttribute="trailing" id="xrp-Q3-3aM"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="filteredImage" destination="iXo-9d-dfa" id="Huc-pU-Af9"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="c5u-uw-q4J" id="hN0-0f-zZS"/>
-                                    <outlet property="delegate" destination="c5u-uw-q4J" id="3fR-f1-Bq4"/>
+                                    <outlet property="dataSource" destination="c5u-uw-q4J" id="pfx-mG-zMA"/>
+                                    <outlet property="delegate" destination="c5u-uw-q4J" id="pS8-Wh-YfH"/>
                                 </connections>
                             </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Nu-SC-isg">
+                                <rect key="frame" x="8" y="72" width="584" height="396"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="396" id="yrn-yJ-sfJ"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -209,6 +223,7 @@
                     </view>
                     <connections>
                         <outlet property="confirmImageView" destination="3Nu-SC-isg" id="mGe-1b-zWR"/>
+                        <outlet property="filterCollectionView" destination="NsR-iJ-TTo" id="cz4-G4-NdU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="De8-Du-AEc" userLabel="First Responder" sceneMemberID="firstResponder"/>
