@@ -18,7 +18,6 @@ class ConfirmPhotoController: UIViewController, UICollectionViewDataSource, UICo
 	@IBOutlet weak var confirmImageView: UIImageView!
 	@IBOutlet weak var filterCollectionView: UICollectionView!
 	
-	
 	let adjustmentFormatterIdentifier = "com.imageFilterAppDemo.cf"
 	let adjustmentFormatVersion = "1.0"
 	var context = CIContext(options: nil)
@@ -26,6 +25,7 @@ class ConfirmPhotoController: UIViewController, UICollectionViewDataSource, UICo
 	var asset : PHAsset!
 	var delegate : ConfirmPhotoDelegate?
 	
+//MARK: View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -44,6 +44,7 @@ class ConfirmPhotoController: UIViewController, UICollectionViewDataSource, UICo
         super.didReceiveMemoryWarning()
     }
 	
+//MARK: IBAction
 	@IBAction func confirmAction(sender: AnyObject) {
 		self.delegate!.photoConfirmed(self.asset)
 		self.navigationController.popToRootViewControllerAnimated(true)
@@ -113,7 +114,14 @@ class ConfirmPhotoController: UIViewController, UICollectionViewDataSource, UICo
 			
 			//Adjustment data (data from after being modified).
 			//This means that the changes we created is going to be saved as adjustmentData that will become metadata for the PHAsset.
-			let adjustmentData = PHAdjustmentData(formatIdentifier: self.adjustmentFormatterIdentifier, formatVersion: self.adjustmentFormatVersion, data: jpegData)
+//			let adjustmentData = PHAdjustmentData(formatIdentifier: self.adjustmentFormatterIdentifier, formatVersion: self.adjustmentFormatVersion, data: jpegData)
+			
+			
+			//What Kirby did, gotta implement this for real in code.
+			let filterInfo = NSDictionary(object: "CISepiaTone", forKey: "filter")
+			let saveFilter = NSKeyedArchiver.archivedDataWithRootObject(filterInfo)
+//			let saveFilter = NSKeyedArchiver(forWritingWithMutableData: filterInfo)
+			let adjustmentData = PHAdjustmentData(formatIdentifier: self.adjustmentFormatterIdentifier, formatVersion: self.adjustmentFormatVersion, data: saveFilter)
 			
 			//Gets the contentEditingInput from the completion handler.
 			var contentEditingOutput = PHContentEditingOutput(contentEditingInput: contentEditingInput)

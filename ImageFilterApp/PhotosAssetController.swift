@@ -9,8 +9,13 @@
 import UIKit
 import Photos
 
+protocol PhotoAssetDelegate {
+	
+}
+
 class PhotosAssetController {
 	var photoAsset : PHAsset?
+	var delegate : PhotoAssetDelegate?
 	
 	init(){}
 	

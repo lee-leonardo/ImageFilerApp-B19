@@ -33,6 +33,8 @@ class PhotoViewController: UIViewController, UICollectionViewDataSource, UIColle
 		var itemSize = flowLayout.itemSize
 		assetPhotoSize = CGSize(width: itemSize.width, height: itemSize.height)
 		
+		self.photoCollectionView.backgroundColor = UIColor.whiteColor()
+		
 	}
 
     override func didReceiveMemoryWarning() {

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AssetsLibrary
 import Photos
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, PHPhotoLibraryChangeObserver, ConfirmPhotoDelegate {
@@ -17,12 +16,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	var cameraPicker = UIImagePickerController()
 	//var photoPicker = UIImagePickerController()
 	var imageActionSheet = UIAlertController()
-	
-	let photoAssetController = PhotosAssetController()
-	
+		
 	var imageAsset : PHAsset!
-	let adjustmentFormatterIdentifier = "com.imageFilterAppDemo.cf"
-	let adjustmentFormatVersion = "1.0"
 	var context = CIContext(options: nil)
 	
 //MARK: IBAction Buttons
@@ -35,63 +30,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
 	}
 	
-	@IBAction func imageEffectsActionSheet(sender: AnyObject) {
-		//println("RootVC: Image Effects Action Sheet Fired!")
-		
-		if self.imageAsset != nil {
-			
-			var imageEffectsSheet = UIAlertController(title: "Effects Available", message: "Select the effect you want applied to the photo.", preferredStyle: UIAlertControllerStyle.ActionSheet)
-			
-			let cancelButton = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-			let sepiaButton = UIAlertAction(title: "Sepia", style: UIAlertActionStyle.Default, handler: {
-				(action: UIAlertAction!) -> Void in
-				let filterTest = "CISepiaTone"
-				self.applyFilter(filterTest)
-			})
-			let gaussianButton = UIAlertAction(title: "Gaussian Blur", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) -> Void in
-				let gaussFilter = "CIGaussianBlur"
-				self.applyFilter(gaussFilter)
-			})
-			let vibrant = UIAlertAction(title: "Vibrant", style: UIAlertActionStyle.Default, handler: {
-				(action: UIAlertAction!) -> Void in
-				let vibrance = "CIVibrance"
-				self.applyFilter(vibrance)
-			})
-			let posterize = UIAlertAction(title: "Posterize", style: UIAlertActionStyle.Default, handler: {
-				(action: UIAlertAction!) -> Void in
-				let vibrance = "CIColorPosterize"
-				self.applyFilter(vibrance)
-			})
-			let noirButton = UIAlertAction(title: "Noir", style: UIAlertActionStyle.Default, handler: {
-				(action: UIAlertAction!) -> Void in
-				let noir = "CIPhotoEffectNoir"
-				self.applyFilter(noir)
-			})
-			
-			imageEffectsSheet.addAction(cancelButton)
-			imageEffectsSheet.addAction(sepiaButton)
-			imageEffectsSheet.addAction(gaussianButton)
-			imageEffectsSheet.addAction(vibrant)
-			imageEffectsSheet.addAction(posterize)
-			imageEffectsSheet.addAction(noirButton)
-			
-			self.presentViewController(imageEffectsSheet, animated: true, completion: nil)
-			
-		} else {
-			var alert = UIAlertController(title: "Nothing to Edit!", message: "This app is designed to edit images. Therefore this application cannot edit when you have not selected anything!", preferredStyle: UIAlertControllerStyle.Alert)
-			let okay = UIAlertAction(title: "Sorry...", style: UIAlertActionStyle.Cancel, handler: nil)
-			alert.addAction(okay)
-			self.presentViewController(alert, animated: true, completion: nil)
-		}
-
-		
-	}
-	
 	@IBAction func showShareSheet(sender: AnyObject) {
 		if imageView.image != nil {
-			
 			var activityItem : [AnyObject] = [imageView.image]
 			var shareSheet = UIActivityViewController(activityItems: activityItem, applicationActivities: nil)
+			if shareSheet.popoverPresentationController != nil {
+				shareSheet.popoverPresentationController.barButtonItem = sender as UIBarButtonItem
+
+			}
+
 			self.presentViewController(shareSheet, animated: true, completion: nil)
 			
 		} else {
@@ -122,9 +69,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		setupPickers()
 		setupActionController()
 	}
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-	}
 
 //MARK: Setup methods
 	func setupPickers() {
@@ -144,8 +88,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	}
 	
 	func firstTime() {
-		var assetsLibrary = ALAssetsLibrary()
-		if ALAssetsLibrary.authorizationStatus() != ALAuthorizationStatus.Authorized {
+//		var assetsLibrary = ALAssetsLibrary()
+//		if ALAssetsLibrary.authorizationStatus() != ALAuthorizationStatus.Authorized {
 			var requireAuthorization = UIAlertController(title: "App Requires Authorization", message: "This application requires permissions to your Photo Library and Camera to function properly.", preferredStyle: UIAlertControllerStyle.Alert)
 			let okayButton = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil)
 			requireAuthorization.addAction(okayButton)
@@ -153,16 +97,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 			
 			//If I wanted to ask for permissions, this would probably be the best place to do it. I do not want to ask them for all permissions however... That can be done with:
 			//assetsLibrary.enumerateGroupsWithTypes(types: ALAssetsGroupType, usingBlock: ALAssetsLibraryGroupsEnumerationResultsBlock?, failureBlock: ALAssetsLibraryAccessFailureBlock?)
-		}
+//		}
 	}
 	
 	func updateImageView() {
 		var targetSize = CGSize(width: CGRectGetWidth(self.imageView.frame), height: CGRectGetHeight(self.imageView.frame))
 
-		PHImageManager.defaultManager().requestImageForAsset(imageAsset, targetSize: targetSize, contentMode: PHImageContentMode.AspectFill, options: nil) {
-			(image: UIImage!, [NSObject : AnyObject]!) -> Void in
-			self.imageView.image = image
-			
+		//if imageAsset != nil {
+			PHImageManager.defaultManager().requestImageForAsset(imageAsset, targetSize: targetSize, contentMode: PHImageContentMode.AspectFill, options: nil) {
+				(image: UIImage!, [NSObject : AnyObject]!) -> Void in
+				self.imageView.image = image
+		//}
 		}
 	}
 	
@@ -221,12 +166,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 			//self.checkAuthentication({ (status) -> Void inif status == PHAuthorizationStatus.Authorized {}})
 		}
 	}
-//General segue.
-//	override func performSegueWithIdentifier(identifier: String!, sender: AnyObject!) {
-//		if identifier == "ShowPhotoLibrary" {
-//			
-//		}
-//	}
 	
 //MARK: UIImagePickerController
 	func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
@@ -266,65 +205,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 				}
 			}
 		}
-	}
-	
-//MARK: FilterApplicationMethod
-	func applyFilter(selectedFilter: String) {
-		
-		var options = PHContentEditingInputRequestOptions()
-		options.canHandleAdjustmentData = {
-			(data: PHAdjustmentData!) -> Bool in
-			
-			return data.formatIdentifier == self.adjustmentFormatterIdentifier && data.formatVersion == self.adjustmentFormatVersion
-		}
-		
-		self.imageAsset!.requestContentEditingInputWithOptions(options, completionHandler: { (contentEditingInput: PHContentEditingInput!, info: [NSObject : AnyObject]!) -> Void in
-			//This part 'decomposes' parts of the code by grabbing the url and orientation. From this it pulls a copy of the image and applies the correct orientation (so that our modifications affect the image in the correct way).
-			let url = contentEditingInput.fullSizeImageURL
-			let orientation = contentEditingInput.fullSizeImageOrientation
-			let inputImage = CIImage(contentsOfURL: url)
-			inputImage.imageByApplyingOrientation(orientation)
-			
-			//Init filter, the filter has a CI name. The filter needs to be set to a default before setting specific values. After that sent the inputImage into the filter, the forKey tells the filterto modify the foreground image of the CIImage? After than the output is referenced.
-			
-			let filter = CIFilter(name: selectedFilter)
-			filter.setDefaults()
-			filter.setValue(inputImage, forKey: kCIInputImageKey)
-			let outputImage = filter.outputImage
-			
-			//This takes the outputImage and generates a CGImage from the CIImage using the context of the VC. This outputImage's coordinates are translated with it with outputImage.extent(?). The CGImage then is converted into a UIImage object, which then is translated into jpeg data with a resolution.
-			let cgImage = self.context.createCGImage(outputImage, fromRect: outputImage.extent())
-			let finishedImage = UIImage(CGImage: cgImage)
-			//				let finishedImage = UIImage(CIImage: outputImage)
-			var jpegData = UIImageJPEGRepresentation(finishedImage, 0.5) //Resolution is intensive memory-wise.
-			
-			//Adjustment data (data from after being modified).
-			//This means that the changes we created is going to be saved as adjustmentData that will become metadata for the PHAsset.
-			let adjustmentData = PHAdjustmentData(formatIdentifier: self.adjustmentFormatterIdentifier, formatVersion: self.adjustmentFormatVersion, data: jpegData)
-			
-			//Gets the contentEditingInput from the completion handler.
-			var contentEditingOutput = PHContentEditingOutput(contentEditingInput: contentEditingInput)
-			jpegData.writeToURL(contentEditingOutput.renderedContentURL, atomically: true)
-			
-			
-			//Adjustment data is a dictionary, NSData is wide opened due to developer define behavior.
-			//We were passing in full data, on the initializer on the PHAdjustmentData
-			//Item forkey filter -> to allow the finding of
-			
-			
-			
-			contentEditingOutput.adjustmentData = adjustmentData
-			
-			PHPhotoLibrary.sharedPhotoLibrary().performChanges({
-				var request = PHAssetChangeRequest(forAsset: self.imageAsset)
-				request.contentEditingOutput = contentEditingOutput
-				
-				}, completionHandler: { (success: Bool, error: NSError!) -> Void in
-					if !success {
-						println("ImageFilterApp Error in PHPhotoLibrary.sharedPhotoLibrary().performChanges:\n\(error)")
-					}
-			})
-		})
 	}
 	
 //MARK: ConfirmPhotoDelegate

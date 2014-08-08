@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		380129C419956F4200028E5A /* codeIgnore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380129C319956F4200028E5A /* codeIgnore.swift */; };
 		3824A6F319907C24008771EC /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3824A6F219907C24008771EC /* AssetsLibrary.framework */; };
 		3826A9F719917DDE001E54B1 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3826A9F619917DDE001E54B1 /* PhotoViewController.swift */; };
 		3826A9F919918602001E54B1 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3826A9F819918602001E54B1 /* PhotoCell.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		380129C319956F4200028E5A /* codeIgnore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = codeIgnore.swift; sourceTree = "<group>"; };
 		3824A6F219907C24008771EC /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		3826A9F619917DDE001E54B1 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		3826A9F819918602001E54B1 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			children = (
 				38BEB74C1990249B0063384C /* AppDelegate.swift */,
 				38E55DE5199321D700817BEF /* SimpleCI.swift */,
+				380129C319956F4200028E5A /* codeIgnore.swift */,
 				38BEB76B199025BC0063384C /* Model */,
 				38BEB769199025B10063384C /* Controller */,
 				38BEB76A199025B60063384C /* View */,
@@ -257,6 +260,7 @@
 				3826A9F919918602001E54B1 /* PhotoCell.swift in Sources */,
 				38BEB74F1990249B0063384C /* ViewController.swift in Sources */,
 				38D295721991979C001EB347 /* ConfirmPhotoController.swift in Sources */,
+				380129C419956F4200028E5A /* codeIgnore.swift in Sources */,
 				38BEB74D1990249B0063384C /* AppDelegate.swift in Sources */,
 				3826A9F719917DDE001E54B1 /* PhotoViewController.swift in Sources */,
 				38E55DE6199321D700817BEF /* SimpleCI.swift in Sources */,

@@ -18,12 +18,12 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6eG-BY-T0H">
                                 <rect key="frame" x="8" y="72" width="584" height="476"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="240" id="Dwy-Du-r9D"/>
-                                </constraints>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tc7-rG-b27">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="jix-HK-0ye"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem systemItem="action" id="hOS-vg-xhO">
                                         <connections>
@@ -37,11 +37,6 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="9n9-Ul-jg6"/>
-                                    <barButtonItem systemItem="edit" id="tet-i1-bu0">
-                                        <connections>
-                                            <action selector="imageEffectsActionSheet:" destination="BYZ-38-t0r" id="L3h-1V-acY"/>
-                                        </connections>
-                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -156,9 +151,6 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Nu-SC-isg">
                                 <rect key="frame" x="8" y="72" width="584" height="396"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="396" id="yrn-yJ-sfJ"/>
-                                </constraints>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NsR-iJ-TTo">
                                 <rect key="frame" x="0.0" y="476" width="600" height="80"/>
