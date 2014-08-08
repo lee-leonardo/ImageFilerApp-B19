@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class PhotoViewController: UIViewController, UICollectionViewDataSource, ConfirmPhotoDelegate {
+class PhotoViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ConfirmPhotoDelegate {
 
 	@IBOutlet weak var photoCollectionView: UICollectionView!
 	var fetchResultAssets : PHFetchResult!
@@ -37,7 +37,6 @@ class PhotoViewController: UIViewController, UICollectionViewDataSource, Confirm
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 	
 //MARK: Segue

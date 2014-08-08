@@ -18,6 +18,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	//var photoPicker = UIImagePickerController()
 	var imageActionSheet = UIAlertController()
 	
+	let photoAssetController = PhotosAssetController()
+	
 	var imageAsset : PHAsset!
 	let adjustmentFormatterIdentifier = "com.imageFilterAppDemo.cf"
 	let adjustmentFormatVersion = "1.0"
@@ -276,7 +278,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 			filter.setValue(inputImage, forKey: kCIInputImageKey)
 			let outputImage = filter.outputImage
 			
-			//This takes the outputImage and generates a CGImage from the CIImage using the context of the VC. This outputImage's coordinates are translated with it with outputImage.extent(?). The CGImage then is converted into a UIImage object, which then is tranlated into jpeg data with a resolution.
+			//This takes the outputImage and generates a CGImage from the CIImage using the context of the VC. This outputImage's coordinates are translated with it with outputImage.extent(?). The CGImage then is converted into a UIImage object, which then is translated into jpeg data with a resolution.
 			let cgImage = self.context.createCGImage(outputImage, fromRect: outputImage.extent())
 			let finishedImage = UIImage(CGImage: cgImage)
 			//				let finishedImage = UIImage(CIImage: outputImage)
@@ -299,10 +301,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 					if !success {
 						println("ImageFilterApp Error in PHPhotoLibrary.sharedPhotoLibrary().performChanges:\n\(error)")
 					}
-					
 			})
-			
-			
 		})
 	}
 	
@@ -313,38 +312,5 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		updateImageView()
 		
 	}
-
-
-//lazy Instantiation... not polished yet?
-//	lazy var imageActionSheet : UIAlertController = {
-//		var imageActionSheet = UIAlertController(title: "Pick Source", message: "This will allow one to pick a source for the Image", preferredStyle: UIAlertControllerStyle.ActionSheet)
-//		
-//		let cameraButton = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default, handler: {
-//			(action : UIAlertAction!) -> Void in
-//			
-//			if self.cameraPicker.sourceType == UIImagePickerControllerSourceType.Camera {
-//				self.presentViewController(self.cameraPicker, animated: true, completion: nil)
-//			} else {
-//				var noCameraAlert = UIAlertController(title: "No Camera on Device", message: "This device does not have a camera for this app to use.", preferredStyle: UIAlertControllerStyle.Alert)
-//				let cancel = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil)
-//				noCameraAlert.addAction(cancel)
-//				
-//				self.presentViewController(noCameraAlert, animated: true, completion: nil)
-//			}
-//			
-//			})
-//		let photoLibrary = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default, handler: {
-//			(action: UIAlertAction!) -> Void in
-//			self.presentViewController(self.photoPicker, animated: true, completion: nil)
-//			
-//			})
-//		
-//		let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:nil)
-//		
-//		imageActionSheet.addAction(photoLibrary)
-//		imageActionSheet.addAction(cameraButton)
-//		imageActionSheet.addAction(cancel)
-//		return imageActionSheet
-//		}()
 }
 

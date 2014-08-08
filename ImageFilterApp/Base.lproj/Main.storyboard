@@ -158,6 +158,12 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="HNH-ZN-Ume"/>
                                 </items>
                             </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Nu-SC-isg">
+                                <rect key="frame" x="8" y="72" width="584" height="396"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="396" id="yrn-yJ-sfJ"/>
+                                </constraints>
+                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NsR-iJ-TTo">
                                 <rect key="frame" x="0.0" y="476" width="600" height="80"/>
                                 <constraints>
@@ -180,16 +186,27 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iXo-9d-dfa">
                                                     <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJI-pb-sVT">
+                                                    <rect key="frame" x="0.0" y="49" width="64" height="15"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="iXo-9d-dfa" firstAttribute="top" secondItem="OWZ-lD-5Bx" secondAttribute="top" id="GmQ-nu-dtf"/>
+                                            <constraint firstAttribute="bottom" secondItem="cJI-pb-sVT" secondAttribute="bottom" id="QoE-W1-QXO"/>
+                                            <constraint firstAttribute="trailing" secondItem="cJI-pb-sVT" secondAttribute="trailing" id="UYO-Xz-2bW"/>
                                             <constraint firstAttribute="bottom" secondItem="iXo-9d-dfa" secondAttribute="bottom" id="X6m-QP-ebh"/>
+                                            <constraint firstItem="cJI-pb-sVT" firstAttribute="leading" secondItem="OWZ-lD-5Bx" secondAttribute="leading" id="cFd-yd-3ZO"/>
                                             <constraint firstItem="iXo-9d-dfa" firstAttribute="leading" secondItem="OWZ-lD-5Bx" secondAttribute="leading" id="kgs-RS-94v"/>
                                             <constraint firstAttribute="trailing" secondItem="iXo-9d-dfa" secondAttribute="trailing" id="xrp-Q3-3aM"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="filterLabel" destination="cJI-pb-sVT" id="mk9-qk-6lR"/>
                                             <outlet property="filteredImage" destination="iXo-9d-dfa" id="Huc-pU-Af9"/>
                                         </connections>
                                     </collectionViewCell>
@@ -199,12 +216,6 @@
                                     <outlet property="delegate" destination="c5u-uw-q4J" id="pS8-Wh-YfH"/>
                                 </connections>
                             </collectionView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Nu-SC-isg">
-                                <rect key="frame" x="8" y="72" width="584" height="396"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="396" id="yrn-yJ-sfJ"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Photos
 
 class PhotosAssetController {
-//	var photoAsset : PHAsset?
+	var photoAsset : PHAsset?
 	
+	init(){}
 	
 	
 }

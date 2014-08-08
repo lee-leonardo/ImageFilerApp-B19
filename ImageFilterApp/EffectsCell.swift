@@ -10,6 +10,8 @@ import UIKit
 
 class EffectCell : UICollectionViewCell {
 	@IBOutlet weak var filteredImage: UIImageView!
+	@IBOutlet weak var filterLabel: UILabel!
+	
 	var filteredImageSize : CGSize {
 		get {
 			return CGSize(width: CGRectGetWidth(self.filteredImage.frame), height: CGRectGetHeight(self.filteredImage.frame))
