@@ -81,12 +81,26 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 			var alert = UIAlertController(title: "Nothing to Edit!", message: "This app is designed to edit images. Therefore this application cannot edit when you have not selected anything!", preferredStyle: UIAlertControllerStyle.Alert)
 			let okay = UIAlertAction(title: "Sorry...", style: UIAlertActionStyle.Cancel, handler: nil)
 			alert.addAction(okay)
-			presentViewController(alert, animated: true, completion: nil)
+			self.presentViewController(alert, animated: true, completion: nil)
 		}
 
 		
 	}
 	
+	@IBAction func showShareSheet(sender: AnyObject) {
+		if imageView.image != nil {
+			
+			var activityItem : [AnyObject] = [imageView.image]
+			var shareSheet = UIActivityViewController(activityItems: activityItem, applicationActivities: nil)
+			self.presentViewController(shareSheet, animated: true, completion: nil)
+			
+		} else {
+			var noImageview = UIAlertController(title: "Need to Select a Controller", message: "I'm sorry, but this app requires you to have a picture before you can share it.", preferredStyle: UIAlertControllerStyle.Alert)
+			var okay = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil)
+			noImageview.addAction(okay)
+			self.presentViewController(noImageview, animated: true, completion: nil)
+		}
+	}
 
 //MARK: Viewcontroller
 	override func viewDidLoad() {
@@ -291,6 +305,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 			//Gets the contentEditingInput from the completion handler.
 			var contentEditingOutput = PHContentEditingOutput(contentEditingInput: contentEditingInput)
 			jpegData.writeToURL(contentEditingOutput.renderedContentURL, atomically: true)
+			
+			
+			//Adjustment data is a dictionary, NSData is wide opened due to developer define behavior.
+			//We were passing in full data, on the initializer on the PHAdjustmentData
+			//Item forkey filter -> to allow the finding of
+			
+			
+			
 			contentEditingOutput.adjustmentData = adjustmentData
 			
 			PHPhotoLibrary.sharedPhotoLibrary().performChanges({

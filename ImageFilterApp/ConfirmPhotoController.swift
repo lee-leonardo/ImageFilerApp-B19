@@ -58,6 +58,7 @@ class ConfirmPhotoController: UIViewController, UICollectionViewDataSource, UICo
 		var cell = collectionView.dequeueReusableCellWithReuseIdentifier("SelectFilterCell", forIndexPath: indexPath) as EffectCell
 		cell.filterLabel.text = self.filterKeys[indexPath.item]
 		
+//		Cache this and top not run filter every time.
 		PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: cell.filteredImageSize, contentMode: PHImageContentMode.AspectFill, options: nil) {
 			(previewImage: UIImage!, object: [NSObject : AnyObject]!) -> Void in
 			

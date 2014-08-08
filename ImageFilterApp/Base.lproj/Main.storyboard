@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6eG-BY-T0H">
-                                <rect key="frame" x="8" y="64" width="584" height="484"/>
+                                <rect key="frame" x="8" y="72" width="584" height="476"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="240" id="Dwy-Du-r9D"/>
                                 </constraints>
@@ -25,8 +25,13 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tc7-rG-b27">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
+                                    <barButtonItem systemItem="action" id="hOS-vg-xhO">
+                                        <connections>
+                                            <action selector="showShareSheet:" destination="BYZ-38-t0r" id="IvK-fX-D4K"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="L4S-fK-2i6"/>
-                                    <barButtonItem style="plain" systemItem="action" id="6Cc-JX-CD3">
+                                    <barButtonItem style="plain" systemItem="camera" id="6Cc-JX-CD3">
                                         <connections>
                                             <action selector="actionSheet:" destination="BYZ-38-t0r" id="X7k-t8-vVe"/>
                                         </connections>
@@ -50,8 +55,14 @@
                             <constraint firstItem="Tc7-rG-b27" firstAttribute="top" secondItem="6eG-BY-T0H" secondAttribute="bottom" constant="8" id="fd2-56-AZ9"/>
                             <constraint firstItem="6eG-BY-T0H" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="jbG-H1-7fe"/>
                             <constraint firstItem="6eG-BY-T0H" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="jbL-fX-Uhf"/>
+                            <constraint firstItem="6eG-BY-T0H" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="kbz-IW-HiB"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Tc7-rG-b27" secondAttribute="bottom" id="zfZ-Yl-Xa2"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="jbG-H1-7fe"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="MSb-rH-hIM"/>
                     <connections>
@@ -143,21 +154,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byb-AF-ru7">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="UhE-CM-r1C"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="t2n-ek-nhJ"/>
-                                    <barButtonItem systemItem="done" id="HU3-CP-FzU">
-                                        <connections>
-                                            <action selector="confirmAction:" destination="c5u-uw-q4J" id="XHg-I0-5mp"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="HNH-ZN-Ume"/>
-                                </items>
-                            </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Nu-SC-isg">
                                 <rect key="frame" x="8" y="72" width="584" height="396"/>
                                 <constraints>
@@ -216,6 +212,21 @@
                                     <outlet property="delegate" destination="c5u-uw-q4J" id="pS8-Wh-YfH"/>
                                 </connections>
                             </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byb-AF-ru7">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="UhE-CM-r1C"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="t2n-ek-nhJ"/>
+                                    <barButtonItem systemItem="done" id="HU3-CP-FzU">
+                                        <connections>
+                                            <action selector="confirmAction:" destination="c5u-uw-q4J" id="XHg-I0-5mp"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="HNH-ZN-Ume"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
