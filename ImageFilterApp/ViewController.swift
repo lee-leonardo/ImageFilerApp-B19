@@ -14,11 +14,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var actionButton: UIBarButtonItem!
 	var cameraPicker = UIImagePickerController()
-	var imagePicker = UIImagePickerController()
+//	var imagePicker = UIImagePickerController()
 	var imageActionSheet = UIAlertController()
 		
 	var imageAsset : PHAsset!
 	var context = CIContext(options: nil)
+	@IBOutlet weak var filterList: UICollectionView!
 	
 //MARK: IBAction Buttons
 	@IBAction func actionSheet(sender: AnyObject) {
@@ -67,6 +68,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	}
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+		filterList.backgroundColor = UIColor.lightGrayColor()
 		setupPickers()
 		setupActionController()
 	}
@@ -148,12 +150,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		let imagePicker = UIAlertAction(title: "Image Picker", style: UIAlertActionStyle.Default) {
 			(action: UIAlertAction!) -> Void in
 			
-			self.presentViewController(self.imagePicker, animated: true, completion: {
-				() -> Void in
+			if self.cameraPicker.sourceType == UIImagePickerControllerSourceType.Camera {
+				self.presentViewController(self.cameraPicker, animated: true, completion: nil)
+			} else {
+				var noCameraAlert = UIAlertController(title: "No Camera on Device", message: "This device does not have a camera for this app to use.", preferredStyle: UIAlertControllerStyle.Alert)
+				let cancel = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil)
+				noCameraAlert.addAction(cancel)
 				
-				println("This is the callback of the image picker.")
-//				<#code#>
-			})
+				self.presentViewController(noCameraAlert, animated: true, completion: nil)
+			}
 		}
 		
 		let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
