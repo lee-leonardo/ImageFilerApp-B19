@@ -50,6 +50,15 @@ class ConfirmPhotoController: UIViewController, UICollectionViewDataSource, UICo
 		self.navigationController.popToRootViewControllerAnimated(true)
 		
 	}
+//MARK: Filter Methods
+	var filterKeys = ["CISepiaTone", "CIGaussianBlur", "CIVibrance", "CIColorPosterize", "CIPhotoEffectNoir"]
+	func baseFilter() {
+		for filter in filterKeys {
+			
+		}
+		let sepia = FilterCache(name: "Sepia")
+		
+	}
 	
 //MARK: UICollectionViewDatasource
 	func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int {
@@ -110,17 +119,19 @@ class ConfirmPhotoController: UIViewController, UICollectionViewDataSource, UICo
 			let cgImage = self.context.createCGImage(outputImage, fromRect: outputImage.extent())
 			let finishedImage = UIImage(CGImage: cgImage)
 			//				let finishedImage = UIImage(CIImage: outputImage)
-			var jpegData = UIImageJPEGRepresentation(finishedImage, 0.5) //Resolution is intensive memory-wise.
+			var jpegData = UIImageJPEGRepresentation(finishedImage, 0.9) //Resolution is intensive memory-wise.
 			
 			//Adjustment data (data from after being modified).
 			//This means that the changes we created is going to be saved as adjustmentData that will become metadata for the PHAsset.
 //			let adjustmentData = PHAdjustmentData(formatIdentifier: self.adjustmentFormatterIdentifier, formatVersion: self.adjustmentFormatVersion, data: jpegData)
 			
+//			let saveFilter = NSKeyedArchiver(forWritingWithMutableData: filterInfo)
+
 			
 			//What Kirby did, gotta implement this for real in code.
-			let filterInfo = NSDictionary(object: "CISepiaTone", forKey: "filter")
+			//Essentially what's going on is that the filter change information is being stored as an NSDictionary, this data then is converted into a NSData object, which then is sent into the adjustment data file that is stored alongside the image that we are using.
+			let filterInfo = NSDictionary(object: selectedFilter, forKey: "filter")
 			let saveFilter = NSKeyedArchiver.archivedDataWithRootObject(filterInfo)
-//			let saveFilter = NSKeyedArchiver(forWritingWithMutableData: filterInfo)
 			let adjustmentData = PHAdjustmentData(formatIdentifier: self.adjustmentFormatterIdentifier, formatVersion: self.adjustmentFormatVersion, data: saveFilter)
 			
 			//Gets the contentEditingInput from the completion handler.
@@ -145,12 +156,6 @@ class ConfirmPhotoController: UIViewController, UICollectionViewDataSource, UICo
 			})
 		})
 	}
-	
-	
-	
-//TEMP: This is where my stuff for the filtered images are for the time being...
-	var filterKeys = ["CISepiaTone", "CIGaussianBlur", "CIVibrance", "CIColorPosterize", "CIPhotoEffectNoir"]
-	
 }
 
 

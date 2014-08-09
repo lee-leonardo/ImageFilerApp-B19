@@ -14,7 +14,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var actionButton: UIBarButtonItem!
 	var cameraPicker = UIImagePickerController()
-	//var photoPicker = UIImagePickerController()
+	var imagePicker = UIImagePickerController()
 	var imageActionSheet = UIAlertController()
 		
 	var imageAsset : PHAsset!
@@ -52,6 +52,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 //MARK: Viewcontroller
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		PHPhotoLibrary.sharedPhotoLibrary().registerChangeObserver(self) //With this you need to conform to PHPhotoLibraryChangeObserver
 		
 		if NSUserDefaults.standardUserDefaults().boolForKey("notFirstTime") == true {
@@ -103,11 +104,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	func updateImageView() {
 		var targetSize = CGSize(width: CGRectGetWidth(self.imageView.frame), height: CGRectGetHeight(self.imageView.frame))
 
-		//if imageAsset != nil {
-			PHImageManager.defaultManager().requestImageForAsset(imageAsset, targetSize: targetSize, contentMode: PHImageContentMode.AspectFill, options: nil) {
-				(image: UIImage!, [NSObject : AnyObject]!) -> Void in
-				self.imageView.image = image
-		//}
+		PHImageManager.defaultManager().requestImageForAsset(imageAsset, targetSize: targetSize, contentMode: PHImageContentMode.AspectFill, options: nil) {
+			(image: UIImage!, [NSObject : AnyObject]!) -> Void in
+			
+			self.imageView.image = image
 		}
 	}
 	
@@ -133,7 +133,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 			})
 		let photoLibrary = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default, handler: {
 			(action: UIAlertAction!) -> Void in
-			//self.presentViewController(self.photoPicker, animated: true, completion: nil)
 			
 			self.checkAuthentication({ (status) -> Void in
 				if status == PHAuthorizationStatus.Authorized {
@@ -142,16 +141,26 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 					})
 				}
 			})
+//			self.performSegueWithIdentifier("ShowPhotoLibrary", sender: self)
 			
-			
-			//self.performSegueWithIdentifier("ShowPhotoLibrary", sender: self)
-						
 			})
+		
+		let imagePicker = UIAlertAction(title: "Image Picker", style: UIAlertActionStyle.Default) {
+			(action: UIAlertAction!) -> Void in
+			
+			self.presentViewController(self.imagePicker, animated: true, completion: {
+				() -> Void in
+				
+				println("This is the callback of the image picker.")
+//				<#code#>
+			})
+		}
 		
 		let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
 		
 		imageActionSheet.addAction(photoLibrary)
 		imageActionSheet.addAction(cameraButton)
+		imageActionSheet.addAction(imagePicker)
 		imageActionSheet.addAction(cancel)
 		
 	}
