@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class PhotoViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ConfirmPhotoDelegate {
+class PhotoViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
 	@IBOutlet weak var photoCollectionView: UICollectionView!
 	var fetchResultAssets : PHFetchResult!
@@ -49,7 +49,6 @@ class PhotoViewController: UIViewController, UICollectionViewDataSource, UIColle
 			var destination = segue.destinationViewController as ConfirmPhotoController
 			var indexPath = self.photoCollectionView.indexPathForCell(cell)
 			destination.asset = self.fetchResultAssets[indexPath.item] as PHAsset
-			destination.delegate = self
 			
 		}
 	}

@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, PHPhotoLibraryChangeObserver, ConfirmPhotoDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, PHPhotoLibraryChangeObserver {
                             
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var actionButton: UIBarButtonItem!
@@ -175,7 +175,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		if segue.identifier == "ShowPhotoLibrary" {
 			var destination = segue.destinationViewController as PhotoViewController
 			destination.fetchResultAssets = PHAsset.fetchAssetsWithOptions(nil)
-			destination.delegate = self
 
 			//self.checkAuthentication({ (status) -> Void inif status == PHAuthorizationStatus.Authorized {}})
 		}
@@ -219,6 +218,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 				}
 			}
 		}
+	}
+	
+//MARK: UICollectionViewController
+	func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int {
+		return 10
+	}
+	func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell! {
+		var cell = collectionView.dequeueReusableCellWithReuseIdentifier("SampleFilter", forIndexPath: indexPath) as UICollectionViewCell
+
+		return cell
+
 	}
 	
 //MARK: ConfirmPhotoDelegate
