@@ -13,6 +13,7 @@
 		3826A9F919918602001E54B1 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3826A9F819918602001E54B1 /* PhotoCell.swift */; };
 		3830F47C1995A3BA00A3739F /* FilterCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3830F47B1995A3B900A3739F /* FilterCache.swift */; };
 		383B6148199433390020E340 /* PhotosAssetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383B6147199433390020E340 /* PhotosAssetController.swift */; };
+		38869E641997D8780060E446 /* AVImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38869E631997D8780060E446 /* AVImagePicker.swift */; };
 		38BEB74D1990249B0063384C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BEB74C1990249B0063384C /* AppDelegate.swift */; };
 		38BEB74F1990249B0063384C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BEB74E1990249B0063384C /* ViewController.swift */; };
 		38BEB7521990249B0063384C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38BEB7501990249B0063384C /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 		3826A9F819918602001E54B1 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		3830F47B1995A3B900A3739F /* FilterCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCache.swift; sourceTree = "<group>"; };
 		383B6147199433390020E340 /* PhotosAssetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosAssetController.swift; sourceTree = "<group>"; };
+		38869E631997D8780060E446 /* AVImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVImagePicker.swift; sourceTree = "<group>"; };
 		38BEB7471990249B0063384C /* ImageFilterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFilterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BEB74B1990249B0063384C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38BEB74C1990249B0063384C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				3826A9F619917DDE001E54B1 /* PhotoViewController.swift */,
 				38D295711991979C001EB347 /* ConfirmPhotoController.swift */,
 				383B6147199433390020E340 /* PhotosAssetController.swift */,
+				38869E631997D8780060E446 /* AVImagePicker.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				3826A9F919918602001E54B1 /* PhotoCell.swift in Sources */,
 				38BEB74F1990249B0063384C /* ViewController.swift in Sources */,
 				38D295721991979C001EB347 /* ConfirmPhotoController.swift in Sources */,
+				38869E641997D8780060E446 /* AVImagePicker.swift in Sources */,
 				380129C419956F4200028E5A /* codeIgnore.swift in Sources */,
 				3830F47C1995A3BA00A3739F /* FilterCache.swift in Sources */,
 				38BEB74D1990249B0063384C /* AppDelegate.swift in Sources */,
