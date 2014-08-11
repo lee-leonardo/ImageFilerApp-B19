@@ -13,18 +13,38 @@
 		3826A9F919918602001E54B1 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3826A9F819918602001E54B1 /* PhotoCell.swift */; };
 		3830F47C1995A3BA00A3739F /* FilterCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3830F47B1995A3B900A3739F /* FilterCache.swift */; };
 		383B6148199433390020E340 /* PhotosAssetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383B6147199433390020E340 /* PhotosAssetController.swift */; };
+		387D44BD19982C980061B26D /* TestIBDesignable.h in Headers */ = {isa = PBXBuildFile; fileRef = 387D44BC19982C980061B26D /* TestIBDesignable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		387D44CC19982C990061B26D /* TestIBDesignable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 387D44B819982C980061B26D /* TestIBDesignable.framework */; };
+		387D44CD19982C990061B26D /* TestIBDesignable.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 387D44B819982C980061B26D /* TestIBDesignable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		387D44D819982D670061B26D /* FilteredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387D44D719982D670061B26D /* FilteredImageView.swift */; };
 		38869E641997D8780060E446 /* AVImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38869E631997D8780060E446 /* AVImagePicker.swift */; };
 		38BEB74D1990249B0063384C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BEB74C1990249B0063384C /* AppDelegate.swift */; };
 		38BEB74F1990249B0063384C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BEB74E1990249B0063384C /* ViewController.swift */; };
 		38BEB7521990249B0063384C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38BEB7501990249B0063384C /* Main.storyboard */; };
 		38BEB7541990249B0063384C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38BEB7531990249B0063384C /* Images.xcassets */; };
 		38BEB7601990249B0063384C /* ImageFilterAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BEB75F1990249B0063384C /* ImageFilterAppTests.swift */; };
+		38CAA0821998498200EB1EA0 /* Corgi1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 38CAA0811998498200EB1EA0 /* Corgi1.jpg */; };
+		38CAA0831998498200EB1EA0 /* Corgi1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 38CAA0811998498200EB1EA0 /* Corgi1.jpg */; };
 		38D295721991979C001EB347 /* ConfirmPhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D295711991979C001EB347 /* ConfirmPhotoController.swift */; };
 		38E55DE6199321D700817BEF /* SimpleCI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E55DE5199321D700817BEF /* SimpleCI.swift */; };
 		38F604FC19942D9000E16A36 /* EffectsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F604FB19942D9000E16A36 /* EffectsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		387D44CA19982C990061B26D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38BEB73F1990249B0063384C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 387D44B719982C980061B26D;
+			remoteInfo = TestIBDesignable;
+		};
+		387D44CE19982C990061B26D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38BEB73F1990249B0063384C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 387D44B719982C980061B26D;
+			remoteInfo = TestIBDesignable;
+		};
 		38BEB75A1990249B0063384C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 38BEB73F1990249B0063384C /* Project object */;
@@ -34,6 +54,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		387D44D519982C990061B26D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				387D44CD19982C990061B26D /* TestIBDesignable.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		380129C319956F4200028E5A /* codeIgnore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = codeIgnore.swift; sourceTree = "<group>"; };
 		3824A6F219907C24008771EC /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -41,6 +75,10 @@
 		3826A9F819918602001E54B1 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		3830F47B1995A3B900A3739F /* FilterCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCache.swift; sourceTree = "<group>"; };
 		383B6147199433390020E340 /* PhotosAssetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosAssetController.swift; sourceTree = "<group>"; };
+		387D44B819982C980061B26D /* TestIBDesignable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TestIBDesignable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		387D44BB19982C980061B26D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		387D44BC19982C980061B26D /* TestIBDesignable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestIBDesignable.h; sourceTree = "<group>"; };
+		387D44D719982D670061B26D /* FilteredImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilteredImageView.swift; sourceTree = "<group>"; };
 		38869E631997D8780060E446 /* AVImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVImagePicker.swift; sourceTree = "<group>"; };
 		38BEB7471990249B0063384C /* ImageFilterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFilterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BEB74B1990249B0063384C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,17 +89,26 @@
 		38BEB7591990249B0063384C /* ImageFilterAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageFilterAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BEB75E1990249B0063384C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38BEB75F1990249B0063384C /* ImageFilterAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFilterAppTests.swift; sourceTree = "<group>"; };
+		38CAA0811998498200EB1EA0 /* Corgi1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Corgi1.jpg; path = "../../../Downloads/Animal Photos/Corgi1.jpg"; sourceTree = "<group>"; };
 		38D295711991979C001EB347 /* ConfirmPhotoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPhotoController.swift; sourceTree = "<group>"; };
 		38E55DE5199321D700817BEF /* SimpleCI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCI.swift; sourceTree = "<group>"; };
 		38F604FB19942D9000E16A36 /* EffectsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		387D44B419982C980061B26D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		38BEB7441990249B0063384C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3824A6F319907C24008771EC /* AssetsLibrary.framework in Frameworks */,
+				387D44CC19982C990061B26D /* TestIBDesignable.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,12 +122,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		387D44B919982C980061B26D /* TestIBDesignable */ = {
+			isa = PBXGroup;
+			children = (
+				387D44BC19982C980061B26D /* TestIBDesignable.h */,
+				387D44D719982D670061B26D /* FilteredImageView.swift */,
+				387D44BA19982C980061B26D /* Supporting Files */,
+			);
+			path = TestIBDesignable;
+			sourceTree = "<group>";
+		};
+		387D44BA19982C980061B26D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				387D44BB19982C980061B26D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		38BEB73E1990249B0063384C = {
 			isa = PBXGroup;
 			children = (
 				3824A6F219907C24008771EC /* AssetsLibrary.framework */,
 				38BEB7491990249B0063384C /* ImageFilterApp */,
 				38BEB75C1990249B0063384C /* ImageFilterAppTests */,
+				387D44B919982C980061B26D /* TestIBDesignable */,
 				38BEB7481990249B0063384C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +156,7 @@
 			children = (
 				38BEB7471990249B0063384C /* ImageFilterApp.app */,
 				38BEB7591990249B0063384C /* ImageFilterAppTests.xctest */,
+				387D44B819982C980061B26D /* TestIBDesignable.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,6 +179,7 @@
 		38BEB74A1990249B0063384C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				38CAA0811998498200EB1EA0 /* Corgi1.jpg */,
 				38BEB74B1990249B0063384C /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -166,7 +234,36 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		387D44B519982C980061B26D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				387D44BD19982C980061B26D /* TestIBDesignable.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		387D44B719982C980061B26D /* TestIBDesignable */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 387D44D419982C990061B26D /* Build configuration list for PBXNativeTarget "TestIBDesignable" */;
+			buildPhases = (
+				387D44B319982C980061B26D /* Sources */,
+				387D44B419982C980061B26D /* Frameworks */,
+				387D44B519982C980061B26D /* Headers */,
+				387D44B619982C980061B26D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestIBDesignable;
+			productName = TestIBDesignable;
+			productReference = 387D44B819982C980061B26D /* TestIBDesignable.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		38BEB7461990249B0063384C /* ImageFilterApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38BEB7631990249B0063384C /* Build configuration list for PBXNativeTarget "ImageFilterApp" */;
@@ -174,10 +271,13 @@
 				38BEB7431990249B0063384C /* Sources */,
 				38BEB7441990249B0063384C /* Frameworks */,
 				38BEB7451990249B0063384C /* Resources */,
+				387D44D519982C990061B26D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				387D44CB19982C990061B26D /* PBXTargetDependency */,
+				387D44CF19982C990061B26D /* PBXTargetDependency */,
 			);
 			name = ImageFilterApp;
 			productName = ImageFilterApp;
@@ -211,6 +311,9 @@
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Leonardo Lee";
 				TargetAttributes = {
+					387D44B719982C980061B26D = {
+						CreatedOnToolsVersion = 6.0;
+					};
 					38BEB7461990249B0063384C = {
 						CreatedOnToolsVersion = 6.0;
 					};
@@ -235,17 +338,27 @@
 			targets = (
 				38BEB7461990249B0063384C /* ImageFilterApp */,
 				38BEB7581990249B0063384C /* ImageFilterAppTests */,
+				387D44B719982C980061B26D /* TestIBDesignable */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		387D44B619982C980061B26D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38CAA0831998498200EB1EA0 /* Corgi1.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		38BEB7451990249B0063384C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				38BEB7521990249B0063384C /* Main.storyboard in Resources */,
 				38BEB7541990249B0063384C /* Images.xcassets in Resources */,
+				38CAA0821998498200EB1EA0 /* Corgi1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +372,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		387D44B319982C980061B26D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				387D44D819982D670061B26D /* FilteredImageView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		38BEB7431990249B0063384C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -288,6 +409,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		387D44CB19982C990061B26D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 387D44B719982C980061B26D /* TestIBDesignable */;
+			targetProxy = 387D44CA19982C990061B26D /* PBXContainerItemProxy */;
+		};
+		387D44CF19982C990061B26D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 387D44B719982C980061B26D /* TestIBDesignable */;
+			targetProxy = 387D44CE19982C990061B26D /* PBXContainerItemProxy */;
+		};
 		38BEB75B1990249B0063384C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 38BEB7461990249B0063384C /* ImageFilterApp */;
@@ -307,6 +438,49 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		387D44D019982C990061B26D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TestIBDesignable/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		387D44D119982C990061B26D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TestIBDesignable/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		38BEB7611990249B0063384C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -445,6 +619,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		387D44D419982C990061B26D /* Build configuration list for PBXNativeTarget "TestIBDesignable" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				387D44D019982C990061B26D /* Debug */,
+				387D44D119982C990061B26D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		38BEB7421990249B0063384C /* Build configuration list for PBXProject "ImageFilterApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

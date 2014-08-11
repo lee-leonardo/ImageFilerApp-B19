@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, PHPhotoLibraryChangeObserver {
+class ViewController: UIViewController, UINavigationControllerDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, PHPhotoLibraryChangeObserver, ConfirmPhotoDelegate {
                             
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var actionButton: UIBarButtonItem!
@@ -175,6 +175,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UICollec
 		if segue.identifier == "ShowPhotoLibrary" {
 			var destination = segue.destinationViewController as PhotoViewController
 			destination.fetchResultAssets = PHAsset.fetchAssetsWithOptions(nil)
+			destination.delegate = self
+
 
 			//self.checkAuthentication({ (status) -> Void inif status == PHAuthorizationStatus.Authorized {}})
 		}
