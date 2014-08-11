@@ -20,6 +20,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UICollec
 	var imageAsset : PHAsset!
 	var context = CIContext(options: nil)
 	@IBOutlet weak var filterList: UICollectionView!
+	var photosAssetController = PhotosAssetController()
 	
 //MARK: IBAction Buttons
 	@IBAction func actionSheet(sender: AnyObject) {
@@ -71,6 +72,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UICollec
 		filterList.backgroundColor = UIColor.lightGrayColor()
 		setupPickers()
 		setupActionController()
+
+		//Attempting to hide the filterList (collectionView).
+//		if imageView.image == nil {
+//			self.filterList.frame.height = CGFloat(0.0)
+//		}
 	}
 
 //MARK: Setup methods
@@ -151,7 +157,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UICollec
 			(action: UIAlertAction!) -> Void in
 			
 			if self.cameraPicker.sourceType == UIImagePickerControllerSourceType.Camera {
-				self.presentViewController(self.cameraPicker, animated: true, completion: nil)
+				//self.presentViewController(self.cameraPicker, animated: true, completion: nil)
+				//AVFoundationCamera
+				self.performSegueWithIdentifier("AVFoundationCamera", sender: self)
+				
+				
 			} else {
 				var noCameraAlert = UIAlertController(title: "No Camera on Device", message: "This device does not have a camera for this app to use.", preferredStyle: UIAlertControllerStyle.Alert)
 				let cancel = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil)
@@ -224,10 +234,28 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UICollec
 	
 //MARK: UICollectionViewController
 	func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int {
-		return 10
+		return photosAssetController.filterKeys.count
 	}
 	func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell! {
-		var cell = collectionView.dequeueReusableCellWithReuseIdentifier("SampleFilter", forIndexPath: indexPath) as UICollectionViewCell
+		var cell = collectionView.dequeueReusableCellWithReuseIdentifier("SampleFilter", forIndexPath: indexPath) as EffectCell
+
+		if imageView.image != nil {
+			PHImageManager.defaultManager().requestImageForAsset(imageAsset, targetSize: cell.filteredImageSize, contentMode: PHImageContentMode.AspectFill, options: nil, resultHandler: {
+				(previewImage: UIImage!, object: [NSObject : AnyObject]!) -> Void in
+				
+				var ciImage = CIImage(image: previewImage)
+				var filter = CIFilter(name: self.photosAssetController.filterKeys[indexPath.item])
+				filter.setDefaults()
+				filter.setValue(ciImage, forKey: kCIInputImageKey)
+				let outputImage = filter.outputImage
+				
+				NSOperationQueue.mainQueue().addOperationWithBlock({
+					() -> Void in
+					cell.filteredImage.image = UIImage(CIImage: outputImage)
+				})
+			})
+		}
+		cell.filterLabel.text = photosAssetController.filterKeys[indexPath.item]
 
 		return cell
 
